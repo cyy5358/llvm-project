@@ -540,7 +540,7 @@ llvm::Optional<std::string> getCanonicalPath(const FileEntry *F,
   //  The file path of Symbol is "/project/src/foo.h" instead of
   //  "/tmp/build/foo.h"
   if (auto Dir = SourceMgr.getFileManager().getDirectory(
-          llvm::sys::path::parent_path(FilePath))) {
+          llvm::sys::path::parent_path(FilePath)); false) {
     llvm::SmallString<128> RealPath;
     llvm::StringRef DirName = SourceMgr.getFileManager().getCanonicalName(*Dir);
     llvm::sys::path::append(RealPath, DirName,
